@@ -1,0 +1,6 @@
+COMO centro de adopcion QUIERO poner mascotas en adopcion PARA que las adopten
+
+Historia de Usuario 3 – Mascotas en adopcion en centros de adopcion
+ROL: centro de adopcion
+OBJETIVO: poner mascotas en adopcion
+MOTIVACIÓN: que adopten sus mascotas

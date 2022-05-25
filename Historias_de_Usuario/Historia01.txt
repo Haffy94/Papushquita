@@ -1,0 +1,6 @@
+COMO usuario QUIERO poder buscar mascotas PARA poder adoptar
+
+Historia de Usuario 1 – Adopcion
+ROL: Usuario
+OBJETIVO: Buscar Mascotas
+MOTIVACIÓN: poder adoptar

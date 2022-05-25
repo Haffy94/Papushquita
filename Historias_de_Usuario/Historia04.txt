@@ -1,0 +1,6 @@
+COMO centro de adopcion QUIERO informar sobre los compromisos y obligaciones que tendra que cumplir el adoptante PARA confirmar que puede adoptar las mascotas de nuestro centro
+
+Historia de Usuario 4 – Compromisos y obligaciones
+ROL: centro de adopcion
+OBJETIVO: informar sobre los compromisos y obligaciones 
+MOTIVACIÓN: confirmar que puede adoptar la mascotas que solicita

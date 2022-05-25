@@ -1,0 +1,6 @@
+COMO usuario QUIERO poner mascotas en adopcion PARA que las adopten
+
+Historia de Usuario 2 – Mascotas en adopcion
+ROL: Usuario
+OBJETIVO: poner mascotas en adopcion
+MOTIVACIÓN: que adopten sus mascotas

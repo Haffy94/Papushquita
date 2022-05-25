@@ -1,0 +1,7 @@
+COMO centro de adopcion QUIERO conocer informacion personal del adoptante, como con cuanto espacio cuenta en su casao si tiene patio
+PARA confirmar que puede adoptar las mascotas de nuestro centro
+
+Historia de Usuario 5 – Informacion del adoptante
+ROL: centro de adopcion
+OBJETIVO: informar conocer informacion personal del adoptante
+MOTIVACIÓN: confirmar que puede adoptar la mascotas que solicit
