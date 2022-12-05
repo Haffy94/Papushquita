@@ -1,11 +1,10 @@
 const express = require('express');
 const Mascota = require('../models/Mascota');
+const Usuario = require('../models/Usuario');
 
 const getMascotas = async(req, res = express.response) => {  //ver mascota, lo vemos despues de el de crear
 
-    const mascota = await Mascota.find()
-                                .populate('name');
-
+    const mascota = await Mascota.find({ inAdoption: true });
 
     res.json({
         ok : true,
@@ -24,6 +23,7 @@ const publicarMascota = async(req, res = express.response) => {
     try {
 
         mascota.user = req.uid
+        mascota.inAdoption = true
 
         const mascotaGuardada = await mascota.save();
         
@@ -91,32 +91,32 @@ const actualizarMascota = async(req, res = express.response) => {
     
 }
 
-/*
-const eliminarEvento = async(req, res = express.response) => {
+
+const eliminarMascota = async(req, res = express.response) => {
 
 
-    const eventoId = req.params.id
+    const mascotaId = req.params.id
     const uid = req.uid
     
     try {
 
-        const evento = await Evento.findById(eventoId);
+        const mascota = await Mascota.findById(mascotaId);
 
-        if( !evento ){
+        if( !mascota ){
             return res.status(404).json({
                 ok: false,
                 msg: 'Evento no existe por ese id'
             });
         }
 
-        if (evento.user.toString() !== uid){
+        if (mascota.user.toString() !== uid){
             return res.status(401).json({
                 ok: false,
-                msg: 'no puede eliminar este evento por que no le pertenece'
+                msg: 'no puede eliminar esta mascota por que no le pertenece'
             });
         }
 
-        await Evento.findByIdAndDelete( eventoId );
+        await Mascota.findByIdAndDelete( mascotaId );
 
         res.json({
             ok : true
@@ -131,10 +131,68 @@ const eliminarEvento = async(req, res = express.response) => {
     }
 
 }
- */
+
+
+const adoptarMascota = async(req, res = express.response) => {
+
+    const mascotaId = req.params.id
+    const uid = req.uid
+    
+    try {
+
+        const mascota = await Mascota.findById(mascotaId);
+
+        if( !mascota ){
+            return res.status(404).json({
+                ok: false,
+                msg: 'Mascota no existe con ese id'
+            });
+        }
+
+        if (mascota.user.toString() === uid){
+            return res.status(401).json({
+                ok: false,
+                msg: 'no puede adoptar su propia mascota'
+            });
+        }
+
+        const usuario = await Usuario.findById(uid);
+
+        if( !usuario.isVerify ){
+            return res.status(401).json({
+                ok: false,
+                msg: 'deber verificar su usuario primero!'
+            });
+        }
+
+        const adopcionMascota= {
+            ...req.body,
+            user : uid,
+            inAdoption : false
+        }
+
+        const mascotaAdoptada = await Mascota.findByIdAndUpdate( mascotaId, adopcionMascota, {new: true} );
+
+        res.json({
+            ok : true,
+            mascota: mascotaAdoptada
+        });
+        
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+            ok: false,
+            msg: 'hable con el Admin'
+        });       
+    }
+    
+}
+
 
 module.exports = {
     getMascotas,
     publicarMascota,
-    actualizarMascota
+    actualizarMascota,
+    eliminarMascota,
+    adoptarMascota
 }

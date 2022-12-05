@@ -5,14 +5,12 @@
 const express = require('express');
 const { check } = require('express-validator');
 
-const { isDate } = require('../helpers/isDate');
 const { validarCampos } = require('../middlewares/validar-campos');
 const { validarJWT } = require('../middlewares/validar-jwt')
-const { getMascotas, publicarMascota, actualizarMascota } = require('../controllers/pets')
+const { getMascotas, publicarMascota, actualizarMascota, eliminarMascota, adoptarMascota } = require('../controllers/pets')
 
 const router = express.Router();
-//todas tienen que estar validadas por jwt
-router.use( validarJWT );
+
 
 // ver mascotas
 router.get(
@@ -24,10 +22,12 @@ router.get(
 router.post(
         '/',
         [
-               /* check('title', 'el titulo es obligatorio').not().isEmpty(),
-                check('start', 'fecha de inicio es obligatoria').custom( isDate ),
-                check('end', 'fecha de finalizacion es obligatoria').custom( isDate ),
-                validarCampos */
+                validarJWT,
+                check('type', 'Por favor especificar el tipo de mascota').not().isEmpty(),
+                check('age', 'Por favor especificar la edad de la mascota').not().isEmpty(),
+                check('size', 'Por favor especificar el tamaño de la mascota').not().isEmpty(),
+                check('address', 'Por favor especificar la direccion donde actualmente se encuentra la mascota').not().isEmpty(),
+                validarCampos
         ], 
         publicarMascota);
 
@@ -36,19 +36,30 @@ router.post(
 router.put(
         '/:id',
         [
-                /* check('title', 'el titulo es obligatorio').not().isEmpty(),
-                check('start', 'fecha de inicio es obligatoria').custom( isDate ),
-                check('end', 'fecha de finalizacion es obligatoria').custom( isDate ),
-                validarCampos */
+                validarJWT,
+                check('type', 'Por favor especificar el tipo de mascota').not().isEmpty(),
+                check('age', 'Por favor especificar la edad de la mascota').not().isEmpty(),
+                check('size', 'Por favor especificar el tamaño de la mascota').not().isEmpty(),
+                check('address', 'Por favor especificar la direccion donde actualmente se encuentra la mascota').not().isEmpty(),
+                validarCampos
         ],
         actualizarMascota);
 
 //borrar una mascota
-// router.delete(
-//         '/:id',
-//         eliminarEvento);
+router.delete(
+        '/:id',
+        [
+                validarJWT,
+        ],
+        eliminarMascota);
 
 //adoptar una mascota
+router.put(
+        '/adopt/:id', //id de la mascota
+        [
+                validarJWT,
+        ],
+        adoptarMascota);
 //devolver una mascota
 
 module.exports= router;

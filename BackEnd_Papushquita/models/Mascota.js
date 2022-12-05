@@ -7,13 +7,16 @@ const EventoSchema = Schema({
         required: true
     },
     name: {
-        type: String,
-        required: true
+        type: String
     },
     breed : {               //mestizo o si es de alguna raza
         type: String
     },
     age: {
+        type: String,
+        required: true
+    },
+    gender: {
         type: String,
         required: true
     },
@@ -23,6 +26,10 @@ const EventoSchema = Schema({
     },
     address: {              //si la dirrecion de la  mascota es distinta de el usuario adoptante
         type: String,
+        required: true
+    },
+    inAdoption: {              //si la dirrecion de la  mascota es distinta de el usuario adoptante
+        type: Boolean,
         required: true
     },
     user: {

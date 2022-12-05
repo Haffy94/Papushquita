@@ -25,7 +25,6 @@ const crearUsuario = async(req, res = express.response) => {
         const salt = bcrypt.genSaltSync();
         usuario.password = bcrypt.hashSync(password, salt);
 
-
         await usuario.save();
 
         //generar jwt
@@ -106,8 +105,92 @@ const revalidarToken = async(req, res = express.response) => {
     })
 }
 
+
+const validarUsuario = async(req, res = express.response) => {
+    
+    const userId = req.uid
+
+    try {
+
+        const usuario = await Usuario.findById(userId);
+
+        if( !usuario ){
+            return res.status(404).json({
+                ok: false,
+                msg: 'no Existe usuario con este ID'
+            });
+        }
+
+
+        const verificarUsuario= {
+            ...req.body,
+            user : userId,
+            isVerify : true
+        }
+
+        const usuarioVerificado = await Usuario.findByIdAndUpdate( userId, verificarUsuario, {new: true} );
+
+        res.json({
+            ok : true,
+            usuario: usuarioVerificado
+        });
+        
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+            ok: false,
+            msg: 'hable con el Admin'
+        });       
+    }
+    
+    
+}
+
+
+
+const editarUsuario = async(req, res = express.response) => {
+    
+    const userId = req.uid
+
+    try {
+
+        const usuario = await Usuario.findById(userId);
+
+        if( !usuario ){
+            return res.status(404).json({
+                ok: false,
+                msg: 'no Existe usuario con este ID'
+            });
+        }
+
+
+        const editarUsuario= {
+            ...req.body,
+            user : userId
+        }
+
+        const usuarioEditado = await Usuario.findByIdAndUpdate( userId, editarUsuario, {new: true} );
+
+        res.json({
+            ok : true,
+            usuario: usuarioEditado
+        });
+        
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+            ok: false,
+            msg: 'hable con el Admin'
+        });       
+    }
+    
+    
+}
+
 module.exports = {
     crearUsuario,
     loginUsuario,
     revalidarToken,
+    validarUsuario,
+    editarUsuario
 }
