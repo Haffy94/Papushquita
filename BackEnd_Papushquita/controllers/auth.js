@@ -28,14 +28,14 @@ const crearUsuario = async(req, res = express.response) => {
         await usuario.save();
 
         //generar jwt
-        const token = await generarJWT(usuario.id, usuario.name);
+        //const token = await generarJWT(usuario.id, usuario.name);
 
         
         res.status(201).json({
             ok : true,
             uid: usuario.id,
             name: usuario.name,
-            token
+            //token
         })
             
     } catch (error) {
@@ -101,6 +101,8 @@ const revalidarToken = async(req, res = express.response) => {
 
     res.json({
         ok : true,
+        uid,
+        name,
         token: token
     })
 }

@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import Swal from 'sweetalert2';
 import { useAuthStore, useForm } from '../../hooks';
 import './loginPage.css';
 
@@ -15,7 +17,8 @@ const registerFormFields = {
 
 export const LoginPage = () => {
 
-    const { startLogin } = useAuthStore();
+
+    const { startLogin, errorMessage, startRegister } = useAuthStore();
 
     const { loginEmail, loginPassword, onInputChange:onLoginInputChange } = useForm( loginFormFields );
     const { registerName, registerEmail, registerPassword, registerPassword2, onInputChange:onRegisterInputChange } = useForm( registerFormFields );
@@ -24,12 +27,35 @@ export const LoginPage = () => {
     const loginSubmit = ( event ) => {
         event.preventDefault();
         startLogin({ email: loginEmail, password: loginPassword });
+        Swal.fire('Bienvenido', '', 'success')
+        .then((result) => {
+            window.location.replace('http://localhost:5173/');
+          });     
     }
 
     const registerSubmit =  ( event ) => {
         event.preventDefault();
-        console.log({ registerName, registerEmail, registerPassword, registerPassword2 });
+        if ( registerPassword !== registerPassword2 ){
+            Swal.fire('Error en registro', 'contraseñas no son iguales', 'error');
+            return;
+        }
+        startRegister({ name: registerName, email: registerEmail, password: registerPassword });
+        Swal.fire('Usuario creado Exitosamente!', 'Por favor ingrese su mail y su contraseña', 'success')
+            .then((result) => {
+                location.reload();
+              });
+        
+        
     }
+
+    useEffect(() => {
+      if ( errorMessage !== undefined ) {
+        Swal.fire('Error de autenticacion!!', errorMessage, 'error');
+      }
+    
+
+    }, [errorMessage])
+    
 
 
     return (
@@ -70,7 +96,10 @@ export const LoginPage = () => {
 
                 <div className="col-md-6 login-form-2">
                     <h3>Registro</h3>
-                    <form onSubmit={ registerSubmit }>
+                    <form 
+                        id='registerForm'
+                        onSubmit={ registerSubmit }
+                    >
                         <div className="form-group mb-2">
                             <input
                                 type="text"
@@ -117,7 +146,8 @@ export const LoginPage = () => {
                             <input 
                                 type="submit" 
                                 className="btnSubmit" 
-                                value="Crear cuenta" />
+                                value="Crear cuenta"
+                                />
                         </div>
                     </form>
                 </div>
