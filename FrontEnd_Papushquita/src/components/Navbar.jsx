@@ -26,23 +26,33 @@ export const Navbar = () => {
         </span>
         <div>
         <button 
-          className="btn btn-outline-primary" 
-          onClick={ () => { navigate("/auth") }}
-          style={{ display: statusActLogin === 'not-authenticated' ? 'block' : 'none' }}
+            className="btn btn-outline-primary" 
+            onClick={ () => { navigate("/pets") }}
+            >
+              <i className="fa-solid fa-dog"></i>
+              &nbsp;
+              <span> Agregar Mascota</span>
+          </button>
+        </div>
+        <div>
+          <button 
+            className="btn btn-outline-primary" 
+            onClick={ () => { navigate("/auth") }}
+            style={{ display: statusActLogin === 'not-authenticated' ? 'block' : 'none' }}
+            >
+              <i className="fas fa-sign-in-alt" ></i>
+              &nbsp;
+              <span> Login/Register</span>
+          </button>
+          <button 
+            className="btn btn-outline-danger"
+            onClick={ startLogout } 
+            style={{ display: statusActLogin !== 'not-authenticated' ? 'block' : 'none'}}
           >
-            <i className="fas fa-sign-in-alt" ></i>
-            &nbsp;
-            <span> Login/Register</span>
-        </button>
-        <button 
-          className="btn btn-outline-danger"
-          onClick={ startLogout } 
-          style={{ display: statusActLogin !== 'not-authenticated' ? 'block' : 'none'}}
-        >
-            <i className="fas fa-sign-out-alt" ></i>
-            &nbsp;
-            <span>Salir</span>
-        </button>      
+              <i className="fas fa-sign-out-alt" ></i>
+              &nbsp;
+              <span>Salir</span>
+          </button>      
         </div>
         
     </div>

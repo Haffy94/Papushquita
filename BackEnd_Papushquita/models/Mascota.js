@@ -28,7 +28,13 @@ const EventoSchema = Schema({
         type: String,
         required: true
     },
-    inAdoption: {              //si la dirrecion de la  mascota es distinta de el usuario adoptante
+    notes: {              
+        type: String
+    },
+    image: {              
+        type: String
+    },
+    inAdoption: {              
         type: Boolean,
         required: true
     },

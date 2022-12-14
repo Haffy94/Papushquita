@@ -24,8 +24,10 @@ const publicarMascota = async(req, res = express.response) => {
 
         mascota.user = req.uid
         mascota.inAdoption = true
+        
 
         const mascotaGuardada = await mascota.save();
+
         
         res.json({
             ok: true,
@@ -189,10 +191,38 @@ const adoptarMascota = async(req, res = express.response) => {
 }
 
 
+const subirImagen = async(req, res) => {
+
+        const mascotaId = req.body.id;
+        const uid = req.body.user;
+
+        const petImageUrl = req.file.path;
+        
+
+        const nuevaMascota= {
+            ...req.body,
+            user : uid,
+            image : req.file.path
+        }
+
+        const mascotaActualizada = await Mascota.findByIdAndUpdate( mascotaId, nuevaMascota, {new: true} );
+
+        res.json({
+            ok : true,
+            mascota: mascotaActualizada
+        });
+
+
+
+}
+
+
+
 module.exports = {
     getMascotas,
     publicarMascota,
     actualizarMascota,
     eliminarMascota,
-    adoptarMascota
+    adoptarMascota,
+    subirImagen
 }

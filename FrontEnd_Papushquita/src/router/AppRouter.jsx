@@ -1,4 +1,5 @@
 import { Routes, Route, Navigate } from "react-router-dom";
+import { AddPetsPage } from "../addPet";
 
 import { LoginPage } from '../auth/';
 import { CalendarPage } from '../calendar';
@@ -14,6 +15,7 @@ export const AppRouter = () => {
     return (
     <Routes>
         
+            <Route path="/pets/*" element={ <AddPetsPage /> } />
             <Route path="/auth/*" element={ <LoginPage /> } />
             <Route path="/*" element={ <PapushquitaPage /> } />
         

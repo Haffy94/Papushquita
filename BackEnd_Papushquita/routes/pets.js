@@ -7,7 +7,10 @@ const { check } = require('express-validator');
 
 const { validarCampos } = require('../middlewares/validar-campos');
 const { validarJWT } = require('../middlewares/validar-jwt')
-const { getMascotas, publicarMascota, actualizarMascota, eliminarMascota, adoptarMascota } = require('../controllers/pets')
+const { getMascotas, publicarMascota, actualizarMascota, eliminarMascota, adoptarMascota, subirImagen } = require('../controllers/pets')
+
+const multer  = require('multer')
+const upload = multer({ dest: 'uploads/' })
 
 const router = express.Router();
 
@@ -31,16 +34,17 @@ router.post(
         ], 
         publicarMascota);
 
+//subnir imagenes mascota
+router.post(
+        '/upload', upload.single('image'),
+        subirImagen);
+
 
 //modificar una mascota
 router.put(
         '/:id',
         [
                 validarJWT,
-                check('type', 'Por favor especificar el tipo de mascota').not().isEmpty(),
-                check('age', 'Por favor especificar la edad de la mascota').not().isEmpty(),
-                check('size', 'Por favor especificar el tamaño de la mascota').not().isEmpty(),
-                check('address', 'Por favor especificar la direccion donde actualmente se encuentra la mascota').not().isEmpty(),
                 validarCampos
         ],
         actualizarMascota);
