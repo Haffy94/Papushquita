@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 import { usePetStore } from '../../hooks';
 
-import image from '../images/kilu.jpg'
-import './PapushquitaPage.css'
 
 
 export const PapushquitaPage = () => {

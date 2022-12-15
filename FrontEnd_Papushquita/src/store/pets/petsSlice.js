@@ -40,10 +40,17 @@ export const petsSlice = createSlice({
             })
 
         },
+        onDeletePet: ( state ) => {
+            if ( state.activePet ){
+                state.events = state.events.filter( event => event.id !== state.activePet.id);
+                state.activePet = null;
+            }
+            
+        },
         clearErrorMessagePet: ( state ) => {
             state.errorMessage = undefined;
         }
     }
 });
 
-export const { onSetPett, onAddNewPet, clearErrorMessagePet, onLoadPets } = petsSlice.actions;
+export const { onSetPett, onAddNewPet, clearErrorMessagePet, onLoadPets, onDeletePet } = petsSlice.actions;

@@ -2,9 +2,20 @@ const express = require('express');
 const Mascota = require('../models/Mascota');
 const Usuario = require('../models/Usuario');
 
-const getMascotas = async(req, res = express.response) => {  //ver mascota, lo vemos despues de el de crear
+const getMascotas = async(req, res = express.response) => { 
 
     const mascota = await Mascota.find({ inAdoption: true });
+
+    res.json({
+        ok : true,
+        mascota
+    })
+}
+
+const getMisMascotas = async(req, res = express.response) => { 
+
+    const userId = req.uid;  
+    const mascota = await Mascota.find({ user: userId });
 
     res.json({
         ok : true,
@@ -16,8 +27,7 @@ const getMascotas = async(req, res = express.response) => {  //ver mascota, lo v
 const publicarMascota = async(req, res = express.response) => {
 
     const mascota = new Mascota( req.body );
-    console.log(mascota)
-    console.log(req.name)
+
 
     
     try {
@@ -50,6 +60,9 @@ const publicarMascota = async(req, res = express.response) => {
 
 const actualizarMascota = async(req, res = express.response) => {
 
+    console.log(req.body)
+    console.log(req.params.id)
+    console.log(req.uid)
     const mascotaId = req.params.id
     const uid = req.uid
     
@@ -72,7 +85,7 @@ const actualizarMascota = async(req, res = express.response) => {
         }
 
         const nuevaMascota= {
-            ...req.body,
+            ...req.body.data,
             user : uid
         }
 
@@ -197,7 +210,7 @@ const subirImagen = async(req, res) => {
         const uid = req.body.user;
 
         const petImageUrl = req.file.path;
-        
+
 
         const nuevaMascota= {
             ...req.body,
@@ -224,5 +237,7 @@ module.exports = {
     actualizarMascota,
     eliminarMascota,
     adoptarMascota,
-    subirImagen
+    subirImagen,
+    getMisMascotas,
+    
 }

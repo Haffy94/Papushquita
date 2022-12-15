@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { papushquitaApi } from "../api";
-import {  onAddNewPet, onLoadPets } from "../store";
+import {  onAddNewPet, onDeletePet, onLoadPets } from "../store";
 
 
 
@@ -46,6 +46,26 @@ export const usePetStore = () => {
         }
     }
 
+    const viewMyPets = async() => {
+        try {
+            const resp = await papushquitaApi.get('/pets/myPets')
+            return resp
+
+        } catch (error) {
+            console.log({ error })
+        }
+    }
+
+    const deletePet = async(petId) => {
+        try {
+            const resp = await papushquitaApi.delete(`/pets/${petId}`)
+            return resp
+
+        } catch (error) {
+            console.log({ error })
+        }
+    }
+
     const addPetImage = async(req) => {
         try {
             console.log("ACAAAA LA CTM")
@@ -73,6 +93,17 @@ export const usePetStore = () => {
         }
     }
 
+    const startEditPet = async(pet) => {
+        try {
+            console.log(pet.id)
+            const resp = await papushquitaApi.put(`/pets/${pet.id}`, {data:pet}) 
+            return resp
+            
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
 
 
     return {
@@ -86,7 +117,10 @@ export const usePetStore = () => {
         //*metodos
         startSavePet,
         viewPets,
-        addPetImage
+        addPetImage,
+        viewMyPets,
+        deletePet,
+        startEditPet
         
     }
 }

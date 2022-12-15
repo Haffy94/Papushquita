@@ -28,10 +28,22 @@ export const Navbar = () => {
         <button 
             className="btn btn-outline-primary" 
             onClick={ () => { navigate("/pets") }}
+            style={{ display: statusActLogin !== 'not-authenticated' ? 'block' : 'none'}}
             >
               <i className="fa-solid fa-dog"></i>
               &nbsp;
               <span> Agregar Mascota</span>
+          </button>
+        </div>
+        <div>
+        <button 
+            className="btn btn-outline-primary" 
+            onClick={ () => { navigate("/pets/myPets") }}
+            style={{ display: statusActLogin !== 'not-authenticated' ? 'block' : 'none'}}
+            >
+              <i className="fa-solid fa-dog"></i>
+              &nbsp;
+              <span> Mis Mascotas</span>
           </button>
         </div>
         <div>
