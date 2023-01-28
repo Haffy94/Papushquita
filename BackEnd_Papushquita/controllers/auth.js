@@ -108,9 +108,23 @@ const revalidarToken = async(req, res = express.response) => {
 }
 
 
+const showUser = async(req, res = express.response) => {
+
+    const { uid } = req;
+
+    const usuario = await Usuario.findById(uid);
+
+
+    res.json({
+        usuario
+    })
+}
+
+
 const validarUsuario = async(req, res = express.response) => {
     
     const userId = req.uid
+    console.log(req.body.data)
 
     try {
 
@@ -123,9 +137,17 @@ const validarUsuario = async(req, res = express.response) => {
             });
         }
 
+        console.log(req.body.data.password)
+        const validPassword = bcrypt.compareSync( req.body.data.password, usuario.password )
+
+        if( !validPassword ){
+            const salt = bcrypt.genSaltSync();
+            req.body.data.password = bcrypt.hashSync(req.body.data.password, salt);
+        }
+
 
         const verificarUsuario= {
-            ...req.body,
+            ...req.body.data,
             user : userId,
             isVerify : true
         }
@@ -194,5 +216,6 @@ module.exports = {
     loginUsuario,
     revalidarToken,
     validarUsuario,
-    editarUsuario
+    editarUsuario,
+    showUser
 }

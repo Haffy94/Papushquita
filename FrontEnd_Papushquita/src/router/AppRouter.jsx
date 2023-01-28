@@ -1,10 +1,9 @@
-import { Routes, Route, Navigate } from "react-router-dom";
-import { AddPetsPage } from "../addPet";
+import { Routes, Route} from "react-router-dom";
 
-import { LoginPage } from '../auth/';
 import { PapushquitaPage } from "../papushquita";
-import { MyPetsPage } from "../myPets/";
-import { EditPetsPage } from "../editPetPage/pages/EditPetPage";
+import { LoginPage, UserVerifyPage, EditUserPage, ViewUserPage } from '../auth/';
+import { MyPetsPage,  EditPetsPage, AddPetsPage } from '../pets/'
+
 
 export const AppRouter = () => {
   
@@ -18,9 +17,11 @@ export const AppRouter = () => {
             <Route path="/pets/myPets" element={ <MyPetsPage /> } />
             <Route path="/pets/editPets" exact element={ <EditPetsPage/> } />
             <Route path="/auth/*" element={ <LoginPage /> } />
+            <Route path="/auth/userVerify/*" element={ <UserVerifyPage /> } />
+            <Route path="/auth/viewUser/*" element={ <ViewUserPage /> } />
+            <Route path="/auth/editUser/*" element={ <EditUserPage /> } />
             <Route path="/*" element={ <PapushquitaPage /> } />
-        
-        
+
        
     </Routes>
   )

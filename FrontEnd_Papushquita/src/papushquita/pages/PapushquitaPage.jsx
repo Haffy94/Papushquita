@@ -12,7 +12,6 @@ export const PapushquitaPage = () => {
   useEffect(() => {
     pets.then(res => {
       setfirst(res.data.mascota);
-      console.log(res.data.mascota)
     }).catch(err => {
         console.log(err)
     })
@@ -34,7 +33,16 @@ export const PapushquitaPage = () => {
                       <h6 className="text-muted">{ pet?.breed + ' ' + pet?.gender + ' ' +  pet?.size }</h6>
                       <p className="card-text">{ pet?.notes }</p>
                       <h6 className="text-muted">{ pet?.address }</h6>
-                      <a href="#" className="btn btn-primary"  style={{ margin:"5px" }} >Adoptar</a>
+                      <a 
+                        href="#" 
+                        className="btn btn-primary"  
+                        style={{ margin:"5px" }} 
+                        onClick={ () => 
+                          { 
+                            console.log({ pet }) 
+                          }
+                        }
+                        >Adoptar</a>
                     </div>
                   </article> {/* <!-- .end Card --> */}
 

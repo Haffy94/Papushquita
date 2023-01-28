@@ -1,6 +1,6 @@
 /* 
-    Rutas de Usuarios /events
-    host + /api/events
+    Rutas de Usuarios /pets
+    host + /api/pets
 */
 const express = require('express');
 const { check } = require('express-validator');

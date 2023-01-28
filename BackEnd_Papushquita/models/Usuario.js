@@ -17,7 +17,13 @@ const UsuarioSchema = Schema({
     isVerify: {
         type: Boolean
     },
-    dni: {
+    fullName: {
+        type: String
+    },
+    documentType: {
+        type: String
+    },
+    documentId: {
         type: String
     },
     contactPhone: {

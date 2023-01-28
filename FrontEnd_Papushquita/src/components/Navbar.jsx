@@ -47,6 +47,28 @@ export const Navbar = () => {
           </button>
         </div>
         <div>
+        <button 
+            className="btn btn-outline-primary" 
+            onClick={ () => { navigate("/auth/userVerify") }}
+            style={{ display: statusActLogin !== 'not-authenticated' ? 'block' : 'none'}}
+            >
+              <i className="fa-solid fa-dog"></i>
+              &nbsp;
+              <span> Verificar Usuario</span>
+          </button>
+        </div>
+        <div>
+        <button 
+            className="btn btn-outline-primary" 
+            onClick={ () => { navigate("/auth/viewUser") }}
+            style={{ display: statusActLogin !== 'not-authenticated' ? 'block' : 'none'}}
+            >
+              <i className="fa-solid fa-dog"></i>
+              &nbsp;
+              <span> Editar Usuario</span>
+          </button>
+        </div>
+        <div>
           <button 
             className="btn btn-outline-primary" 
             onClick={ () => { navigate("/auth") }}

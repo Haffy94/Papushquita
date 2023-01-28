@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom'
-import { EditPetsPage } from '../../editPetPage/pages/EditPetPage';
+import { EditPetsPage } from './EditPetPage';
 import { usePetStore } from '../../hooks';
 
 
@@ -17,7 +17,6 @@ export const MyPetsPage = () => {
   useEffect(() => {
     pets.then(res => {
       setfirst(res.data.mascota);
-      console.log(res.data.mascota)
     }).catch(err => {
         console.log(err)
     })
@@ -42,7 +41,6 @@ export const MyPetsPage = () => {
                       <button 
                         onClick={ () => 
                                   { 
-                                    console.log(pet)
                                     navigate("/pets/editPets", {
                                       state: pet
                                     } )

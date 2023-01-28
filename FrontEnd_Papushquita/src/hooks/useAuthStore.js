@@ -33,8 +33,6 @@ export const useAuthStore = () => {
          try {
  
              const { data } = await papushquitaApi.post('/auth/new', { name, email, password })
-             //localStorage.setItem('token', data.token);
-             //localStorage.setItem('token-init-date', new Date().getTime() );
              dispatch( onLogin({ name: data.name, uid: data.uid }) );
              
          } catch (error) {
@@ -45,6 +43,26 @@ export const useAuthStore = () => {
              
          }
      }
+
+     const startVerifyUser = async(user) => {
+        try {
+            const resp = await papushquitaApi.put('/auth/verify', {data:user}) 
+            return resp
+            
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const startShowUser = async(user) => {
+        try {
+            const resp = await papushquitaApi.get('/auth/') 
+            return resp
+            
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
      const checkAuthToken = async() => {
         const token = localStorage.getItem('token');
@@ -87,7 +105,9 @@ export const useAuthStore = () => {
         startRegister,
         checkAuthToken,
         startLogout,
-        statusLogin
+        statusLogin,
+        startVerifyUser,
+        startShowUser
     }
 
 }

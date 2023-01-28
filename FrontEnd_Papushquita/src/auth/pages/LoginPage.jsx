@@ -35,8 +35,33 @@ export const LoginPage = () => {
 
     const registerSubmit =  ( event ) => {
         event.preventDefault();
+        
+        if( registerName == '' ){
+            Swal.fire('Error en registro', 'El Nombre de Usuario es obligatorio', 'error');
+            return;
+        }
+        if( !(/([a-zA-Z0-9]{6,})/.test(registerName)) ){
+            Swal.fire('Error en registro', 'El Nombre de Usuario debe tener al menos 6 caracteres', 'error');
+            return;
+        }
+        if( registerEmail == '' ){
+            Swal.fire('Error en registro', 'El mail es obligatorio', 'error');
+            return;
+        }
+        if( !(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(registerEmail)) ){
+            Swal.fire('Error en registro', 'Formato de email invalido', 'error');
+            return;
+        }
+        if( registerPassword == '' ){
+            Swal.fire('Error en registro', 'Contraseña no debe estar vacia', 'error');
+            return;
+        }
+        if( !(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{6,}$/.test(registerPassword)) ){
+            Swal.fire('Error en registro', 'Contraseña debe tener al menos una Mayuscula, una minuscula, un numero y ser mayor a 6 digitos', 'error');
+            return;
+        }
         if ( registerPassword !== registerPassword2 ){
-            Swal.fire('Error en registro', 'contraseñas no son iguales', 'error');
+            Swal.fire('Error en registro', 'Contraseñas no son iguales', 'error');
             return;
         }
         startRegister({ name: registerName, email: registerEmail, password: registerPassword });
@@ -50,12 +75,14 @@ export const LoginPage = () => {
 
     useEffect(() => {
       if ( errorMessage !== undefined ) {
-        Swal.fire('Error de autenticacion!!', errorMessage, 'error');
+        console.log(errorMessage)
+        //Swal.fire('Error de autenticacion!!', errorMessage, 'error');
       }
     
 
     }, [errorMessage])
     
+
 
 
     return (

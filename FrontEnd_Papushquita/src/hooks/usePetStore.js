@@ -7,9 +7,8 @@ import {  onAddNewPet, onDeletePet, onLoadPets } from "../store";
 export const usePetStore = () => {
 
     const { status, user, errorMessage } = useSelector( state => state.auth );
-    //const pets = useSelector( state => state.pets );
     const dispatch = useDispatch();
-    //console.log(pets)
+    
     const startSavePet = async( name, type, breed, age, gender, size, address ) => {
 
         try {
