@@ -30,4 +30,4 @@ EventoSchema.method('toJSON', function(){
     return object;
 })
 
-module.exports = model('Mascota', EventoSchema);
+module.exports = model('Solicitud', EventoSchema);

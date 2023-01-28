@@ -1,5 +1,5 @@
 const express = require('express');
-const Mascota = require('../models/Mascota');
+//const Mascota = require('../models/Mascota');
 const Usuario = require('../models/Usuario');
 const Solicitud = require('../models/Solicitud');
 
@@ -18,7 +18,7 @@ const generarSolicitud = async(req, res = express.response) => {
         
         res.json({
             ok: true,
-            mascota: nuevaSolicitud
+            solicitud: nuevaSolicitud
 
         })
         
@@ -34,6 +34,12 @@ const generarSolicitud = async(req, res = express.response) => {
 
 
 
+}
+
+
+module.exports = {
+    generarSolicitud
+    
 }
 
 //la idea es primero llenar el usuario y luegop con la mascota
