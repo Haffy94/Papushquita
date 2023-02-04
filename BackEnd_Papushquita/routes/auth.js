@@ -4,7 +4,7 @@
 */
 const express = require('express');
 const { check } = require('express-validator');
-const {crearUsuario, loginUsuario, revalidarToken, validarUsuario, editarUsuario, showUser } = require('../controllers/auth');
+const {crearUsuario, loginUsuario, revalidarToken, validarUsuario, editarUsuario, showUser, verificarValidacion, cambiarContraseña } = require('../controllers/auth');
 const { validarCampos } = require('../middlewares/validar-campos');
 const { validarJWT } = require('../middlewares/validar-jwt')
 
@@ -41,12 +41,24 @@ router.get(
         validarJWT,
         showUser);
 
+router.get(
+        '/verifyStatus',
+        validarJWT,
+        verificarValidacion);
+
 router.put(
         '/verify', 
         [   
             validarJWT
         ],
         validarUsuario);
+
+router.put(
+        '/passwordChange', 
+        [   
+                validarJWT
+        ],
+        cambiarContraseña);
 
 router.put(
         '/', 

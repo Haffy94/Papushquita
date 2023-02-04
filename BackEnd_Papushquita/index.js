@@ -23,15 +23,6 @@ app.use( '/uploads', express.static('uploads') );
 //lectura y parseo de el body
 app.use(express.json());
 
-//manejos de imagenes
-/* app.use(
-    fileUpload({
-      useTempFiles: true,
-      safeFileNames: true,
-      preserveExtension: true,
-      tempFileDir: `${__dirname}/public/files/temp`
-    })
-); */
 
 //Rutas
 app.use('/api/auth', require('./routes/auth'));

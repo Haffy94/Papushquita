@@ -3,6 +3,7 @@ import { Routes, Route} from "react-router-dom";
 import { PapushquitaPage } from "../papushquita";
 import { LoginPage, UserVerifyPage, EditUserPage, ViewUserPage } from '../auth/';
 import { MyPetsPage,  EditPetsPage, AddPetsPage } from '../pets/'
+import { SolicitudesPage } from '../solicitude/'
 
 
 export const AppRouter = () => {
@@ -20,6 +21,7 @@ export const AppRouter = () => {
             <Route path="/auth/userVerify/*" element={ <UserVerifyPage /> } />
             <Route path="/auth/viewUser/*" element={ <ViewUserPage /> } />
             <Route path="/auth/editUser/*" element={ <EditUserPage /> } />
+            <Route path="/solicitude/*" element={ <SolicitudesPage /> } />
             <Route path="/*" element={ <PapushquitaPage /> } />
 
        

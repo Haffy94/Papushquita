@@ -137,14 +137,6 @@ const validarUsuario = async(req, res = express.response) => {
             });
         }
 
-        console.log(req.body.data.password)
-        const validPassword = bcrypt.compareSync( req.body.data.password, usuario.password )
-
-        if( !validPassword ){
-            const salt = bcrypt.genSaltSync();
-            req.body.data.password = bcrypt.hashSync(req.body.data.password, salt);
-        }
-
 
         const verificarUsuario= {
             ...req.body.data,
@@ -169,6 +161,75 @@ const validarUsuario = async(req, res = express.response) => {
     
     
 }
+
+const cambiarContraseña = async(req, res = express.response) => {
+    const userId = req.uid
+    try {
+        const usuario = await Usuario.findById(userId);
+        const validPassword = bcrypt.compareSync( req.body.data.password, usuario.password )
+
+        console.log(req.body.data.password)
+        if( !validPassword ){
+            const salt = bcrypt.genSaltSync();
+            req.body.data.password = bcrypt.hashSync(req.body.data.password, salt);
+        }
+        console.log(req.body.data.password)
+
+        const cambioContraseña= {
+            ...req.body.data
+        }
+
+        const contraseñaCambiada = await Usuario.findByIdAndUpdate( userId, cambioContraseña, {new: true} );
+
+        res.json({
+            ok : true,
+            usuario: contraseñaCambiada
+        });
+        
+    } catch (error) {
+        
+    }
+    
+
+
+
+}
+
+const verificarValidacion = async(req, res = express.response) => {
+    
+    const userId = req.uid
+
+    try {
+
+        const usuario = await Usuario.findById(userId);
+        if ( usuario.isVerify ){
+            res.json({
+                status : true
+    
+            });
+        }else{
+            res.json({
+                status : false
+    
+            });
+        }
+    
+
+
+
+        
+        
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+            ok: false,
+            msg: 'hable con el Admin'
+        });       
+    }
+    
+    
+}
+
 
 
 
@@ -217,5 +278,7 @@ module.exports = {
     revalidarToken,
     validarUsuario,
     editarUsuario,
-    showUser
+    showUser,
+    verificarValidacion,
+    cambiarContraseña
 }

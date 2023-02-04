@@ -61,7 +61,6 @@ export const AddPetsPage = () => {
             notes:petNotes, 
             address:petAddress
         }).then( res => {
-            console.log(res)
             addPetImage({...res.mascota, 'file':file})
             Swal.fire('Mascota subida correctamente', '', 'success')
                 .then((result) => {

@@ -54,7 +54,7 @@ export const useAuthStore = () => {
         }
     }
 
-    const startShowUser = async(user) => {
+    const startShowUser = async() => {
         try {
             const resp = await papushquitaApi.get('/auth/') 
             return resp
@@ -87,6 +87,32 @@ export const useAuthStore = () => {
         return 'authenticated'
      }
 
+     const verifyUserStatus = async() => {
+        try {
+            const resp = await papushquitaApi.get('/auth/verifyStatus') 
+            console.log(resp.data.status)
+            if (resp.data.status){ return true };
+            return false;
+            
+            
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const startChangePassword = async(user) => {
+        try {
+            const resp = await papushquitaApi.put('/auth/passwordChange', {data:user}) 
+            console.log(resp.data.status)
+            if (resp.data.status){ return true };
+            return false;
+            
+            
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
      const startLogout = () => {
         localStorage.clear();
         dispatch(onLogout());
@@ -107,7 +133,9 @@ export const useAuthStore = () => {
         startLogout,
         statusLogin,
         startVerifyUser,
-        startShowUser
+        startShowUser,
+        verifyUserStatus,
+        startChangePassword
     }
 
 }

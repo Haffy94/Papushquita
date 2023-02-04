@@ -7,7 +7,7 @@ const { check } = require('express-validator');
 
 const { validarCampos } = require('../middlewares/validar-campos');
 const { validarJWT } = require('../middlewares/validar-jwt')
-const { generarSolicitud } = require('../controllers/solicitude')
+const { generarSolicitud, verSolicitudes, modificarSolicitud } = require('../controllers/solicitude')
 
 const multer  = require('multer')
 const upload = multer({ dest: 'uploads/' })
@@ -18,15 +18,33 @@ const router = express.Router();
 
 
 //ver solicitudes
+router.get(
+    '/view',
+    [
+        validarJWT
+    ], 
+    verSolicitudes);
+
 
 //generar solicitudes
 router.post(
-    '/new', 
+    '/new',
+    [
+        validarJWT
+    ], 
     generarSolicitud);
 
 //cancelar solicitud
 
 //aprobar/denegar/rechazar solicitudes
+router.put(
+    '/modify/:id',
+    [
+        validarJWT
+    ], 
+    modificarSolicitud);
+
+    
 
 
 module.exports= router;

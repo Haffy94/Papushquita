@@ -3,7 +3,7 @@ import Modal from 'react-modal';
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css'
 
-import { useEffect, useMemo, useState } from 'react';
+import { useState } from 'react';
 import { useAuthStore, useUiStore } from '../../hooks';
 
 
@@ -25,7 +25,7 @@ const customStyles = {
 export const ChangePasswordModal = ({modalIsOpen, setIsOpen}) => {
 
     
-    const { startVerifyUser } = useAuthStore()
+    const { startChangePassword } = useAuthStore()
 
 
 
@@ -61,7 +61,7 @@ export const ChangePasswordModal = ({modalIsOpen, setIsOpen}) => {
                 Swal.fire('Error en registro', 'Contraseña debe tener al menos una Mayuscula, una minuscula, un numero y ser mayor a 6 digitos', 'error');
                 return;
             }
-            startVerifyUser({
+            startChangePassword({
                 password: formValues.password,
             }).then( res => {
                 Swal.fire('Contraseña modificada!', '', 'success')

@@ -60,9 +60,6 @@ const publicarMascota = async(req, res = express.response) => {
 
 const actualizarMascota = async(req, res = express.response) => {
 
-    console.log(req.body)
-    console.log(req.params.id)
-    console.log(req.uid)
     const mascotaId = req.params.id
     const uid = req.uid
     

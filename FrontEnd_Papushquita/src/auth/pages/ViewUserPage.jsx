@@ -41,7 +41,7 @@ export const ViewUserPage = () => {
                     <h6 className="text-muted">Nombre Completo:  { userMod?.fullName }</h6>
                     <h6 className="text-muted">Telefono: { userMod?.contactPhone }</h6>
                     <h6 className="text-muted">Tipo y Numero de documento: { userMod?.documentType } { userMod?.documentId }</h6>
-                    <h6 className="text-muted">Direccion { userMod?.address }</h6>
+                    <h6 className="text-muted">Direccion: { userMod?.address }</h6>
                     <h6 className="text-muted">Tipo de hogar: { userMod?.houseType }-{ userMod?.houseType2 }</h6>
                     <h6 className="text-muted">Experiencia con Mascotas: { userMod?.experienceWhitOtherPets }</h6>
                     <h6 className="text-muted">Mascotas castradas: { userMod?.otherAnimalsCastration }</h6>

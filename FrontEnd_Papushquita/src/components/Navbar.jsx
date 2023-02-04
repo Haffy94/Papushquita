@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 import { useAuthStore } from '../hooks';
 
@@ -9,9 +11,17 @@ export const Navbar = () => {
 
   let navigate = useNavigate();
 
-  const { startLogout, checkAuthToken, statusLogin } = useAuthStore();
+  const { startLogout, verifyUserStatus, statusLogin } = useAuthStore();
+  const [verifyUser, setVerifyUser] = useState()
 
   const statusActLogin = statusLogin()
+
+  useEffect(  () => {
+    verifyUserStatus().then( status => {
+      setVerifyUser(status)
+    } )
+    
+  }, [])
 
 
 
@@ -50,7 +60,7 @@ export const Navbar = () => {
         <button 
             className="btn btn-outline-primary" 
             onClick={ () => { navigate("/auth/userVerify") }}
-            style={{ display: statusActLogin !== 'not-authenticated' ? 'block' : 'none'}}
+            style={{ display: verifyUser === false && statusActLogin !== 'not-authenticated' ? 'block' : 'none'}}
             >
               <i className="fa-solid fa-dog"></i>
               &nbsp;
@@ -61,11 +71,22 @@ export const Navbar = () => {
         <button 
             className="btn btn-outline-primary" 
             onClick={ () => { navigate("/auth/viewUser") }}
-            style={{ display: statusActLogin !== 'not-authenticated' ? 'block' : 'none'}}
+            style={{ display: verifyUser === true && statusActLogin !== 'not-authenticated' ? 'block' : 'none'}}
             >
               <i className="fa-solid fa-dog"></i>
               &nbsp;
               <span> Editar Usuario</span>
+          </button>
+        </div>
+        <div>
+        <button 
+            className="btn btn-outline-primary" 
+            onClick={ () => { navigate("/solicitude") }}
+            style={{ display: statusActLogin !== 'not-authenticated' ? 'block' : 'none'}}
+            >
+              <i className="fa-solid fa-dog"></i>
+              &nbsp;
+              <span> Mis Solicitudes </span>
           </button>
         </div>
         <div>

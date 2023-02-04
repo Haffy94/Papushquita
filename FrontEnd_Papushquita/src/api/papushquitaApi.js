@@ -10,7 +10,6 @@ const papushquitaApi = axios.create({
     baseURL: VITE_API_URL
 });
 
-//todo: configurar interceptorees
 papushquitaApi.interceptors.request.use( config => {
 
     config.headers = {
