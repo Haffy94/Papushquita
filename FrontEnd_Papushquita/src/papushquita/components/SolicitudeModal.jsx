@@ -72,14 +72,14 @@ export const SolicitudeModal = ({modalIsOpen, setIsOpen, pet}) => {
         <form className="container" onSubmit={ onSubmit }>
 
         <div className="form-group mb-2">
-                <label>Hola! estoy interesado en adoptar a esta mascota!</label>
+                <label>Hola, estoy interesado en adoptar tu mascota</label>
             </div>
 
             <div className="form-group mb-2">
                 <textarea 
                     type="text" 
                     className="form-control"
-                    placeholder="deja un mensaje breve de porque quiere esta mascota(opcional)"
+                    placeholder="Deja un mensaje breve de porque crees que eres el indicado para esta mascota(opcional)"
                     rows="5"
                     name="message"
                     value={ formValues.message }

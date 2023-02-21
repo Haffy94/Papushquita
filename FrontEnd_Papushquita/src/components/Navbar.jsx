@@ -119,7 +119,7 @@ export const Navbar = () => {
             </button>
             <button 
               className="btn btn-outline-danger"
-              onClick={ startLogout } 
+              onClick={ () => { startLogout(); navigate("/"); }  } 
               style={{ display: statusActLogin !== 'not-authenticated' ? 'block' : 'none'}}
               >
                 <i className="fas fa-sign-out-alt" ></i>

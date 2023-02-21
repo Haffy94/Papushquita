@@ -86,69 +86,64 @@ return (
             <div className="row mb-4">
                 <div className="col">
                     <div className="form-outline">
-                        <input type="text" id="form6Example1" className="form-control" placeholder="" name="fullName" value={ fullName } onChange = { onInputChange } />
-                        <label className="form-label" htmlFor="form6Example1">Nombre Completo</label>
+                        <input type="text" id="fullName" className="form-control" name="fullName" value={ fullName } onChange={ onInputChange } />
+                        <label className="form-label" htmlFor="fullName">Nombre completo</label>
                     </div>
-                </div>
-                
+                </div>                   
             </div>
+
             <div className="row mb-4">
                 <div className="col">
                     <div className="form-outline">
-                        <input type="text" id="form6Example1" className="form-control" placeholder="" name="contactPhone" value={ contactPhone } onChange = { onInputChange } />
-                        <label className="form-label" htmlFor="form6Example1">Numero Telefonico</label>
+                        <input type="text" id="contactPhone" className="form-control" name="contactPhone" value={ contactPhone } onChange={ onInputChange } />
+                        <label className="form-label" htmlFor="contactPhone">Número telefónico</label>
                     </div>
                 </div>
                 <div className="col">
                     <div className="form-outline">
-                        <select className="form-select" aria-label="Disabled select example" placeholder="type" name="documentType" value={ documentType } onChange = { onInputChange }>
-                            <option defaultValue>Selecione una opcion</option>
+                        <select className="form-select" name="documentType" value={ documentType } onChange={ onInputChange }>
                             <option value="DNI">DNI</option>
-                            <option value="Cedula de Identidad">Cedula de Identidad</option>
+                            <option value="Cédula de identidad">Cédula de identidad</option>
                         </select>
-                        <label className="form-label" htmlFor="form6Example2">Tipo de Documento</label>
+                        <label className="form-label" htmlFor="documentType">Tipo de documento</label>
                     </div>
                 </div>
                 <div className="col">
                     <div className="form-outline">
-                        <input type="text" id="form6Example1" className="form-control" placeholder="" name="documentId" value={ documentId } onChange = { onInputChange } />
-                        <label className="form-label" htmlFor="form6Example1">Numero de Documento</label>
+                        <input type="text" id="documentId" className="form-control" name="documentId" value={ documentId } onChange={ onInputChange } />
+                        <label className="form-label" htmlFor="documentId">Número de documento</label>
                     </div>
                 </div>
             </div>
-
 
             <div className="form-outline mb-4">
-                <input type="text" id="form6Example3" className="form-control" placeholder="" name="address" value={ address } onChange = { onInputChange } />
-                <label className="form-label" htmlFor="form6Example3">Domicilio</label>
+                <input type="text" id="address" className="form-control" name="address" value={ address } onChange={ onInputChange } />
+                <label className="form-label" htmlFor="address">Domicilio</label>
             </div>
 
             <div className="row mb-4">
-
                 <div className="col">
                     <div className="form-outline">
-                        <select className="form-select" aria-label="Disabled select example" placeholder="" name="houseType" value={ houseType } onChange = { onInputChange } >
-                            <option defaultValue>Seleccione una Opcion</option>
+                        <select className="form-select" name="houseType" value={ houseType } onChange={ onInputChange } >
                             <option value="Casa">Casa</option>
                             <option value="Departamento">Departamento</option>
                         </select>
-                        <label className="form-label" htmlFor="form6Example2">TIpo de Hogar</label>
+                        <label className="form-label" htmlFor="houseType">Tipo de hogar</label>
                     </div>
                 </div>
                 <div className="col">
                     <div className="form-outline">
-                        <select className="form-select" aria-label="Disabled select example" placeholder="" name="houseType2" value={ houseType2 } onChange = { onInputChange }>
-                            <option defaultValue>Seleccione una Opcion</option>
+                        <select className="form-select" name="houseType2" value={ houseType2 } onChange={ onInputChange }>
                             <option value="Inquilino">Inquilino</option>
                             <option value="Propietario">Propietario</option>
                         </select>
-                        <label className="form-label" htmlFor="form6Example2">¿Es Inquilino o Propietario?</label>
+                        <label className="form-label" htmlFor="houseType2">¿Es inquilino o propietario?</label>
                     </div>
                 </div>
                 <div className="col">
                     <div className="form-outline">
-                        <input type="text" id="form6Example1" className="form-control" placeholder="" name="familymembers" value={ familymembers } onChange = { onInputChange } />
-                        <label className="form-label" htmlFor="form6Example1">Cantidad de personas que viven en el hogar</label>
+                        <input type="text" id="familymembers" className="form-control" name="familymembers" value={ familymembers } onChange={ onInputChange } />
+                        <label className="form-label" htmlFor="familymembers">Cantidad de personas que viven en el hogar</label>
                     </div>
                 </div>
             </div>
@@ -157,35 +152,32 @@ return (
 
                 <div className="col">
                     <div className="form-outline">
-                        <select className="form-select" aria-label="Disabled select example" placeholder="" name="experienceWhitOtherPets" value={ experienceWhitOtherPets } onChange = { onInputChange } >
-                            <option defaultValue>Seleccione una Opcion</option>
+                        <select className="form-select" name="experienceWhitOtherPets" value={ experienceWhitOtherPets } onChange = { onInputChange } >
                             <option value="Si">Si</option>
                             <option value="No">No</option>
                         </select>
-                        <label className="form-label" htmlFor="form6Example2">¿Posee experiencia con otras mascotas?</label>
+                        <label className="form-label" htmlFor="experienceWhitOtherPets">¿Posee experiencia con otras mascotas?</label>
                     </div>
                 </div>
                 <div className="col">
                     <div className="form-outline">
-                        <select className="form-select" aria-label="Disabled select example" placeholder="" name="otherAnimalsCastration" value={ otherAnimalsCastration } onChange = { onInputChange }>
-                            <option defaultValue>Seleccione una Opcion</option>
-                            <option value="Si, todo estan castrados">Si, todo estan castrados</option>
-                            <option value="algunos SI otros NO">algunos SI otros NO</option>
-                            <option value="No castre aun pero lo voy a hacer">No castre aun pero lo voy a hacer</option>
-                            <option value="No estan Castrados">No estan Castrados</option>
-                            <option value="No tengo Otros animales">No tengo Otros animales</option>
+                        <select className="form-select" name="otherAnimalsCastration" value={ otherAnimalsCastration } onChange = { onInputChange }>
+                            <option value="Si, todas están castradas">Si, todas están castradas</option>
+                            <option value="Algunas si otras no">Algunas si otras no</option>
+                            <option value="No castre aun, pero lo voy a hacer">No castre aun, pero lo voy a hacer</option>
+                            <option value="No están castradas">No están castradas</option>
+                            <option value="No tengo otras mascotas">No tengo otras mascotas</option>
                         </select>
-                        <label className="form-label" htmlFor="form6Example2">¿El resto de sus mascotas estan castradas</label>
+                        <label className="form-label" htmlFor="otherAnimalsCastration">¿El resto de sus mascotas están castradas</label>
                     </div>
                 </div>
                 <div className="col">
                     <div className="form-outline">
-                        <select className="form-select" aria-label="Disabled select example" placeholder="" name="windowsProtect" value={ windowsProtect } onChange = { onInputChange } >
-                            <option defaultValue>Seleccione una Opcion</option>
+                        <select className="form-select" name="windowsProtect" value={ windowsProtect } onChange = { onInputChange } >
                             <option value="Si">Si</option>
                             <option value="No">No</option>
                         </select>
-                        <label className="form-label" htmlFor="form6Example2">¿Posee proteccion de ventana?</label>
+                        <label className="form-label" htmlFor="windowsProtect">¿Posee protección de ventana?</label>
                     </div>
 
                 </div>

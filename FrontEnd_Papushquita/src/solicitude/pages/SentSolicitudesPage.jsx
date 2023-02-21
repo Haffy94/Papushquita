@@ -69,6 +69,7 @@ export const SentSolicitudesPage = () => {
                           >Borrar</button>
                       </div>
                     </article> {/* <!-- .end Card --> */}
+                    &nbsp;
   
                   </div>
                   

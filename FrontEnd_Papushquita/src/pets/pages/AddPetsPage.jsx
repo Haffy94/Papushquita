@@ -131,7 +131,7 @@ export const AddPetsPage = () => {
 
 
                 <div className="form-outline mb-4">
-                    <input type="text" id="petAddress" className="form-control" placeholder="Barrio o localidad. Por tu seguridad NO pongas dirección exacta." name="petAddress" value={ petAddress } onChange = { onInputChange } />
+                    <input type="text" id="petAddress" className="form-control" placeholder="Barrio o localidad" name="petAddress" value={ petAddress } onChange = { onInputChange } />
                     <label className="form-label" htmlFor="petAddress">Localidad</label>
                 </div>
 

@@ -110,7 +110,7 @@ export const ViewProfileModal = ({modalIsOpen, setIsOpen, selectedSolicitude}) =
                                 } 
                         className="btn btn-primary"  
                         style={{ margin:"5px", display: selectedSolicitude?.status === 'Pendiente' ? 'block' : 'none' }} 
-                        >Aprobar Solicitud</button>
+                        >Aprobar solicitud</button>
                     </div>
                     </article> {/* <!-- .end Card --> */}
 

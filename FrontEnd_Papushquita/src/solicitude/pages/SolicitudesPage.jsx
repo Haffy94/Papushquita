@@ -97,6 +97,7 @@ export const SolicitudesPage = () => {
                         >No retiro mascota</button>
                     </div>
                   </article> {/* <!-- .end Card --> */}
+                  &nbsp;
 
                 </div>
                 
