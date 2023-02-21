@@ -2,19 +2,22 @@
 import Modal from 'react-modal';
 import 'sweetalert2/dist/sweetalert2.min.css'
 
-import { useState } from 'react';
-import { useSolicitudeStore} from '../../hooks';
+import {  useState } from 'react';
+import { useSolicitudeStore } from '../../hooks';
+
+import Swal from 'sweetalert2';
 
 
 
 const customStyles = {
     content: {
-      top: '50%',
+      top: '20%',
       left: '50%',
       right: 'auto',
       bottom: 'auto',
       marginRight: '-50%',
       transform: 'translate(-50%, -50%)',
+      maxHeight: '250px'
     },
   };
 
@@ -23,16 +26,16 @@ const customStyles = {
 export const SolicitudeModal = ({modalIsOpen, setIsOpen, pet}) => {
 
     const { sendSolicitude } = useSolicitudeStore()
+    const [modalCancel, setModalCancel] = useState(true)
 
 
 
     const closeModal = () => {
-    setIsOpen(false);
+        setIsOpen(false);
     }
 
     const [formValues, setFormValues] = useState({
         message: '',
-
     });
 
     const onInputChanged = ({ target }) => {
@@ -43,9 +46,19 @@ export const SolicitudeModal = ({modalIsOpen, setIsOpen, pet}) => {
     }
 
 
-    const onSubmit = async( event ) => {
+    const onSubmit = async() => {
+        if(modalCancel){ return }
         sendSolicitude({ ...formValues, ...pet })
+            .then(response => {
+                if( !response.data.ok ){
+                    Swal.fire('Error al enviar la solicitud', response.data.msg, 'error');
+                }
+                console.log(response.data.msg)
+            })
     }
+
+    
+
 
   return (
     <Modal
@@ -77,29 +90,20 @@ export const SolicitudeModal = ({modalIsOpen, setIsOpen, pet}) => {
             <button
                 type="submit"
                 className="btn btn-outline-primary btn-block"
+                onClick={ () => { closeModal(); setModalCancel(false); } }
             >
                 <i className="far fa-save"></i>
-                <span> Enviar Solicitud </span>
+                <span> Enviar </span>
+            </button>
+            &nbsp;
+            <button
+                onClick={ () => { closeModal(); setModalCancel(true); } }
+                className="btn btn-outline-danger btn-block"
+            >
+                <i className="far fa-stop-circle"></i>
+                <span> Cancelar</span>
             </button>
 
-            <button
-                data-dismiss="modal"
-                onClick={ () => { closeModal() } }
-                className="btn btn-outline-primary btn-block"
-            >
-                <i className="far fa-close"></i>
-                <span> cancelar</span>
-            </button>
-
-            <button
-                data-dismiss="modal"
-                onClick={ console.log(formValues.notes) }
-                className="btn btn-outline-primary btn-block"
-            >
-                <i className="far fa-close"></i>
-                <span> ver info</span>
-            </button>
-            
 
         </form>
 

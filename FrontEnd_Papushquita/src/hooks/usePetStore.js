@@ -103,6 +103,16 @@ export const usePetStore = () => {
         }
     }
 
+    const startAdoptPet = async(petId) => {
+        try {
+            const resp = await papushquitaApi.put(`/pets/adopt/${petId}`) 
+            return resp
+            
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
 
 
     return {
@@ -119,7 +129,8 @@ export const usePetStore = () => {
         addPetImage,
         viewMyPets,
         deletePet,
-        startEditPet
+        startEditPet,
+        startAdoptPet
         
     }
 }

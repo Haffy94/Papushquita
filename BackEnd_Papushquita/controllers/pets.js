@@ -1,6 +1,5 @@
 const express = require('express');
 const Mascota = require('../models/Mascota');
-const Usuario = require('../models/Usuario');
 
 const getMascotas = async(req, res = express.response) => { 
 
@@ -15,7 +14,8 @@ const getMascotas = async(req, res = express.response) => {
 const getMisMascotas = async(req, res = express.response) => { 
 
     const userId = req.uid;  
-    const mascota = await Mascota.find({ user: userId });
+    const mascota = await Mascota.find({ user: userId, inAdoption: true });
+    console.log(mascota)
 
     res.json({
         ok : true,
@@ -148,8 +148,7 @@ const eliminarMascota = async(req, res = express.response) => {
 const adoptarMascota = async(req, res = express.response) => {
 
     const mascotaId = req.params.id
-    const uid = req.uid
-    
+
     try {
 
         const mascota = await Mascota.findById(mascotaId);
@@ -161,29 +160,12 @@ const adoptarMascota = async(req, res = express.response) => {
             });
         }
 
-        if (mascota.user.toString() === uid){
-            return res.status(401).json({
-                ok: false,
-                msg: 'no puede adoptar su propia mascota'
-            });
-        }
-
-        const usuario = await Usuario.findById(uid);
-
-        if( !usuario.isVerify ){
-            return res.status(401).json({
-                ok: false,
-                msg: 'deber verificar su usuario primero!'
-            });
-        }
-
         const adopcionMascota= {
-            ...req.body,
-            user : uid,
             inAdoption : false
         }
 
         const mascotaAdoptada = await Mascota.findByIdAndUpdate( mascotaId, adopcionMascota, {new: true} );
+        console.log(mascotaAdoptada)
 
         res.json({
             ok : true,
@@ -196,7 +178,7 @@ const adoptarMascota = async(req, res = express.response) => {
             ok: false,
             msg: 'hable con el Admin'
         });       
-    }
+    } 
     
 }
 

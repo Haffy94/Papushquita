@@ -9,11 +9,11 @@ import { useState } from "react";
 
 const petFormFields = {
     petName:       "",
-    petType:       "",
+    petType:       "Gato",
     petBreed:      "",
     petAge:        "",
-    petGender:     "",
-    petSize:       "",
+    petGender:     "Macho",
+    petSize:       "Chico",
     petNotes:      "",
     petAddress:    ""
 }
@@ -44,13 +44,9 @@ export const AddPetsPage = () => {
             Swal.fire('Indique la direccion en la que se encuentra la mascota', '', 'error');
             return;
         }
-        if( petNotes == '' ){
-            Swal.fire('agrege alguna descripcion', 'si la mascota es cariñosa o solitaria por ejemplo', 'error');
-            return;
-        }
-
 
         if ( file == null ) { return Swal.fire( 'La foto de perfil es obligatoria', '', 'error' ); }
+
         startSavePet({
             name: petName, 
             type:petType, 
@@ -79,67 +75,64 @@ export const AddPetsPage = () => {
 
         <div style={{ margin: "auto", width: "600px" }}>
             <form onSubmit={ petSubmit }>
-                <h2>Formulario de Ingreso de Mascota</h2>
+                <h2>Formulario de ingreso de mascota</h2>
                 &nbsp;
                 <div className="row mb-4">
                     <div className="col">
                         <div className="form-outline">
-                            <input type="text" id="form6Example1" className="form-control" placeholder="name" name="petName" value={ petName } onChange = { onInputChange } />
-                            <label className="form-label" htmlFor="form6Example1">Nombre de la Mascota</label>
+                            <input type="text" id="petName" className="form-control" placeholder="Nombre" name="petName" value={ petName } onChange = { onInputChange } />
+                            <label className="form-label" htmlFor="petName">Nombre</label>
                         </div>
                     </div>
                     <div className="col">
                         <div className="form-outline">
-                            <select className="form-select" aria-label="Disabled select example" placeholder="type" name="petType" value={ petType } onChange = { onInputChange }>
-                                <option defaultValue>Selecione una opcion</option>
-                                <option value="Gato">Gato</option>
+                            <select className="form-select" id="petType" name="petType" value={ petType } onChange = { onInputChange }>
+                                <option defaultValue="Gato">Gato</option>
                                 <option value="Perro">Perro</option>
                             </select>
-                            <label className="form-label" htmlFor="form6Example2">Tipo</label>
+                            <label className="form-label" htmlFor="petType">Tipo</label>
                         </div>
                     </div>
                     <div className="col">
                         <div className="form-outline">
-                            <input type="text" id="form6Example1" className="form-control" placeholder="breed" name="petBreed" value={ petBreed } onChange = { onInputChange } />
-                            <label className="form-label" htmlFor="form6Example1">Raza</label>
+                            <input type="text" id="petBreed" className="form-control" placeholder="Ej: Mestizo/Salchicha" name="petBreed" value={ petBreed } onChange = { onInputChange } />
+                            <label className="form-label" htmlFor="petBreed">Raza</label>
                         </div>
                     </div>
                 </div>
                 <div className="row mb-4">
                     <div className="col">
                         <div className="form-outline">
-                            <input type="text" id="form6Example1" className="form-control" placeholder="age" name="petAge" value={ petAge } onChange = { onInputChange } />
-                            <label className="form-label" htmlFor="form6Example1">Edad</label>
+                            <input type="text" id="petAge" className="form-control" placeholder="Ej: 3 meses/2 años" name="petAge" value={ petAge } onChange = { onInputChange } />
+                            <label className="form-label" htmlFor="petAge">Edad</label>
                         </div>
                     </div>
                     <div className="col">
                         <div className="form-outline">
-                            <select className="form-select" aria-label="Disabled select example" placeholder="gender" name="petGender" value={ petGender } onChange = { onInputChange } >
-                                <option defaultValue>Sexo</option>
-                                <option value="Macho">Macho</option>
+                            <select className="form-select" id="petGender" name="petGender" value={ petGender } onChange = { onInputChange } >
+                                <option defaultValue="Macho">Macho</option>
                                 <option value="Hembra">Hembra</option>
                             </select>
-                            <label className="form-label" htmlFor="form6Example2">Sexo</label>
+                            <label className="form-label" htmlFor="petGender">Sexo</label>
                         </div>
                     </div>
                     <div className="col">
                         <div className="form-outline">
-                            <select className="form-select" aria-label="Disabled select example" placeholder="size" name="petSize" value={ petSize } onChange = { onInputChange }>
-                                <option defaultValue>Tamaño</option>
-                                <option value="Chico">Chico</option>
+                            <select className="form-select"  id="petSize" name="petSize" value={ petSize } onChange = { onInputChange }>
+                                <option defaultValue="Chico">Chico</option>
                                 <option value="Mediano">Mediano</option>
                                 <option value="Grande">Grande</option>
                                 <option value="Muy Grande">Muy Grande</option>
                             </select>
-                            <label className="form-label" htmlFor="form6Example2">Tamaño</label>
+                            <label className="form-label" htmlFor="petSize">Tamaño</label>
                         </div>
                     </div>
                 </div>
 
 
                 <div className="form-outline mb-4">
-                    <input type="text" id="form6Example3" className="form-control" placeholder="address" name="petAddress" value={ petAddress } onChange = { onInputChange } />
-                    <label className="form-label" htmlFor="form6Example3">Direccion</label>
+                    <input type="text" id="petAddress" className="form-control" placeholder="Barrio o localidad. Por tu seguridad NO pongas dirección exacta." name="petAddress" value={ petAddress } onChange = { onInputChange } />
+                    <label className="form-label" htmlFor="petAddress">Localidad</label>
                 </div>
 
                 <div>
@@ -147,18 +140,18 @@ export const AddPetsPage = () => {
                         <input type="file" onChange={handleOnChange} />
                     </div>
                     <div>
-                        <label className="form-label" htmlFor="form6Example3">Foto de Perfil</label>
+                        <label className="form-label" htmlFor="fotoTxt">Foto de perfil</label>
                     </div>
                 </div>
                 &nbsp;
 
                 <div className="form-outline mb-4">
-                    <textarea className="form-control" id="form6Example7" rows="4" placeholder="notes" name="petNotes" value={ petNotes } onChange = { onInputChange }></textarea>
-                    <label className="form-label" htmlFor="form6Example7">Informacion adicional</label>
+                    <textarea className="form-control" id="petNotes" rows="4" placeholder="Agregue detalles que le gustaría contar sobre esta mascota (Opcional)" name="petNotes" value={ petNotes } onChange = { onInputChange }></textarea>
+                    <label className="form-label" htmlFor="petNotes">Información adicional</label>
                 </div>
 
 
-                <button type="submit" className="btn btn-primary btn-block mb-4" onChange={onInputChange} >Poner en Adopcion!</button>
+                <button type="submit" className="btn btn-primary btn-block mb-4" onChange={onInputChange} >Poner en adopción!</button>
             </form>
         </div>
 

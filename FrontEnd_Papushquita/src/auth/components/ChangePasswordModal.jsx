@@ -10,12 +10,13 @@ import { useAuthStore, useUiStore } from '../../hooks';
 
 const customStyles = {
     content: {
-      top: '50%',
+      top: '20%',
       left: '50%',
       right: 'auto',
       bottom: 'auto',
       marginRight: '-50%',
       transform: 'translate(-50%, -50%)',
+      maxHeight: '200px'
     },
   };
 
@@ -48,6 +49,9 @@ export const ChangePasswordModal = ({modalIsOpen, setIsOpen}) => {
 
     const onSubmit = async( event ) => {
         event.preventDefault();
+        if( formValues.password  == '' ){
+            return;
+        }
         if ( formValues.password  !== formValues.password2 ){
             Swal.fire('Error en registro', 'Contraseñas no son iguales', 'error');
             return;
@@ -118,12 +122,13 @@ export const ChangePasswordModal = ({modalIsOpen, setIsOpen}) => {
             </button>
 
             <button
+                type="close"
                 data-dismiss="modal"
                 onClick={ () => { closeModal() } }
-                className="btn btn-outline-primary btn-block"
+                className="btn btn-outline-danger btn-block"
             >
-                <i className="far fa-close"></i>
-                <span> cancelar</span>
+                <i className="far fa-stop-circle"></i>
+                <span> Cancelar</span>
             </button>
             
 

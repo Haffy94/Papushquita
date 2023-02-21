@@ -5,41 +5,50 @@ import 'sweetalert2/dist/sweetalert2.min.css'
 import { useEffect, useState } from 'react';
 import { useAuthStore, useSolicitudeStore} from '../../hooks';
 
+import { useNavigate } from 'react-router-dom'
+
 
 
 const customStyles = {
     content: {
-      top: '50%',
+      top: '30%',
       left: '50%',
       right: 'auto',
       bottom: 'auto',
       marginRight: '-50%',
       transform: 'translate(-50%, -50%)',
+      maxHeight: '380px'
     },
   };
 
   Modal.setAppElement('#root');
 
-export const ViewProfileModal = ({modalIsOpen, setIsOpen}) => {
+export const ViewProfileModal = ({modalIsOpen, setIsOpen, selectedSolicitude}) => {
 
 
 
-    const { startShowUser } = useAuthStore()
-    const user = startShowUser()
+    let navigate = useNavigate();
+
+    const { viewUser, sendSolicitude, modifySolicitude } = useSolicitudeStore();
+    const [user, setuser] = useState([])
+    console.log(selectedSolicitude)
     
-    const [userMod, setUserMod] = useState([])
-
     useEffect(() => {
-        user.then(res => {
-            setUserMod(res.data.usuario);
-        }).catch(err => {
-            console.log(err)
-        })
+        if(selectedSolicitude !== null){
+            viewUser(selectedSolicitude).then(
+                res => {
+                    setuser(res.data?.usuario)
+                }
+            ) 
+
+        }
         
-        }, [userMod.length])
-    const { sendSolicitude } = useSolicitudeStore()
+        
+    
+    }, [selectedSolicitude])
 
-
+    
+    
 
     const closeModal = () => {
     setIsOpen(false);
@@ -77,27 +86,30 @@ export const ViewProfileModal = ({modalIsOpen, setIsOpen}) => {
                     {/* <!-- Card --> */}
                     <article className="card animated fadeInLeft" >
                     <div className="card-block">
-                        <h4 className="card-title">Datos del Usuario</h4>
-                        <h6 className="text-muted">Nombre:          { userMod?.name }</h6>
-                        <h6 className="text-muted">Email:           { userMod?.email }</h6>
-                        <h6 className="text-muted">Nombre Completo:  { userMod?.fullName }</h6>
-                        <h6 className="text-muted">Telefono: { userMod?.contactPhone }</h6>
-                        <h6 className="text-muted">Tipo y Numero de documento: { userMod?.documentType } { userMod?.documentId }</h6>
-                        <h6 className="text-muted">Direccion: { userMod?.address }</h6>
-                        <h6 className="text-muted">Tipo de hogar: { userMod?.houseType }-{ userMod?.houseType2 }</h6>
-                        <h6 className="text-muted">Experiencia con Mascotas: { userMod?.experienceWhitOtherPets }</h6>
-                        <h6 className="text-muted">Mascotas castradas: { userMod?.otherAnimalsCastration }</h6>
-                        <h6 className="text-muted">Proteccion de ventana: { userMod?.windowsProtect }</h6>
+                        <h4 className="card-title">Datos del usuario</h4>
+                        <h6 className="text-muted">Nombre de usuario:          { user?.name }</h6>
+                        <h6 className="text-muted">Email:           { user?.email }</h6>
+                        <h6 className="text-muted">Nombre Completo:  { user?.fullName }</h6>
+                        <h6 className="text-muted">Telefono: { user?.contactPhone }</h6>
+                        <h6 className="text-muted">Tipo y numero de documento: { user?.documentType } { user?.documentId }</h6>
+                        <h6 className="text-muted">Direccion: { user?.address }</h6>
+                        <h6 className="text-muted">Tipo de hogar: { user?.houseType }-{ user?.houseType2 }</h6>
+                        <h6 className="text-muted">Experiencia con mascotas: { user?.experienceWhitOtherPets }</h6>
+                        <h6 className="text-muted">Mascotas castradas: { user?.otherAnimalsCastration }</h6>
+                        <h6 className="text-muted">Proteccion de ventana: { user?.windowsProtect }</h6>
                         <button 
                         onClick={ () => 
                                     { 
-                                    navigate("/auth/editUser", {
-                                        state: userMod
-                                    } )
+                                        
+                                        
+                                        modifySolicitude(selectedSolicitude?.id, 'Aprobado')
+                                        window.location.reload();
+                                        closeModal()
+
                                     }
                                 } 
                         className="btn btn-primary"  
-                        style={{ margin:"5px" }} 
+                        style={{ margin:"5px", display: selectedSolicitude?.status === 'Pendiente' ? 'block' : 'none' }} 
                         >Aprobar Solicitud</button>
                     </div>
                     </article> {/* <!-- .end Card --> */}

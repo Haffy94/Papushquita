@@ -29,6 +29,11 @@ const EventoSchema = Schema({
         ref: 'Mascota',
         required: true
     },
+    petAddress: {
+        type: Schema.Types.Object,
+        ref: 'Mascota',
+        required: true
+    },
     image: {
         type: String,
         required: true

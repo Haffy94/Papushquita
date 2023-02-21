@@ -37,6 +37,10 @@ export const EditUserPage = () => {
 
   const userVerifySubmit = ( event ) => {
       event.preventDefault();
+      if( !(/([a-zA-Z0-9]{6,})/.test(name)) ){
+        Swal.fire('Error en registro', 'El Nombre de Usuario debe tener al menos 6 caracteres', 'error');
+        return;
+        }
       startVerifyUser({
           name: name,
           fullName: fullName, 
@@ -72,7 +76,7 @@ return (
                 <div className="col">
                     <div className="form-outline">
                         <input type="text" id="form6Example1" className="form-control" placeholder="" name="name" value={ name } onChange = { onInputChange } />
-                        <label className="form-label" htmlFor="form6Example1">Nombre</label>
+                        <label className="form-label" htmlFor="form6Example1">Nombre de Usuario</label>
                     </div>
                 </div>
                 <div className="row mb-4">

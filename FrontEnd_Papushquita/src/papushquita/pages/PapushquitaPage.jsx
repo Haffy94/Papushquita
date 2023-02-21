@@ -9,7 +9,7 @@ export const PapushquitaPage = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [selectedPet, setSelectedPet] = useState()
   const { viewPets } = usePetStore();
-  const {  statusLogin, verifyUserStatus } = useAuthStore();
+  const {  statusLogin, verifyUserStatus, errorMessage } = useAuthStore();
   const pets = viewPets();
 
   const [first, setfirst] = useState([])
@@ -33,21 +33,20 @@ export const PapushquitaPage = () => {
     } )
     
   }, [])
+
   
-  
-  console.log(verifyUser)
 
   return (
     <>
       <div className="container m-t-md">
         <div className="row" >
           { first.map((pet, index ) => 
-            <div className="col-xs-12 col-md-4" key={index} >
+            <div className="col-xs-12 col-md-3" key={index} >
               <article className="card animated fadeInLeft" >
                 <img className="card-img-top" src={ `http://localhost:4000/${pet?.image}`} alt="Card image cap" width="180" height="382" />
                 <div className="card-block">
                   <h4 className="card-title">{ pet?.name }</h4>
-                  <h6 className="text-muted">{ pet?.age }</h6>
+                  <h6 className="text-muted">Edad: { pet?.age }</h6>
                   <h6 className="text-muted">{ pet?.breed + ' ' + pet?.gender + ' ' +  pet?.size }</h6>
                   <p className="card-text">{ pet?.notes }</p>
                   <h6 className="text-muted">{ pet?.address }</h6>

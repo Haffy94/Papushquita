@@ -8,9 +8,6 @@ import { useAuthStore } from "./hooks";
 
 export const PapushquitaApp = () => {
 
-  //const { status } = useAuthStore();
-  //console.log(status)
-  //console.log(checkAuthToken)
 
 
   return (

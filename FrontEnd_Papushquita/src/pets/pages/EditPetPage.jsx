@@ -80,14 +80,13 @@ export const EditPetsPage = () => {
                 <div className="row mb-4">
                     <div className="col">
                         <div className="form-outline">
-                            <input type="text" id="form6Example1" className="form-control" placeholder="name" name="name" value={ name } onChange = { onInputChange } />
-                            <label className="form-label" htmlFor="form6Example1">Nombre de la Mascota</label>
+                            <input type="text" id="form6Example1" className="form-control" placeholder="Nombre" name="name" value={ name } onChange = { onInputChange } />
+                            <label className="form-label" htmlFor="form6Example1">Nombre</label>
                         </div>
                     </div>
                     <div className="col">
                         <div className="form-outline">
                             <select className="form-select" aria-label="Disabled select example" placeholder="type" name="type" value={ type } onChange = { onInputChange }>
-                                <option defaultValue>Selecione una opcion</option>
                                 <option value="Gato">Gato</option>
                                 <option value="Perro">Perro</option>
                             </select>
@@ -111,7 +110,6 @@ export const EditPetsPage = () => {
                     <div className="col">
                         <div className="form-outline">
                             <select className="form-select" aria-label="Disabled select example" placeholder="gender" name="gender" value={ gender } onChange = { onInputChange } >
-                                <option defaultValue>Sexo</option>
                                 <option value="Macho">Macho</option>
                                 <option value="Hembra">Hembra</option>
                             </select>
@@ -121,7 +119,6 @@ export const EditPetsPage = () => {
                     <div className="col">
                         <div className="form-outline">
                             <select className="form-select" aria-label="Disabled select example" placeholder="size" name="size" value={ size } onChange = { onInputChange }>
-                                <option defaultValue>Tamaño</option>
                                 <option value="Chico">Chico</option>
                                 <option value="Mediano">Mediano</option>
                                 <option value="Grande">Grande</option>
@@ -134,8 +131,8 @@ export const EditPetsPage = () => {
 
 
                 <div className="form-outline mb-4">
-                    <input type="text" id="form6Example3" className="form-control" placeholder="address" name="address" value={ address } onChange = { onInputChange } />
-                    <label className="form-label" htmlFor="form6Example3">Direccion</label>
+                    <input type="text" id="form6Example3" className="form-control" placeholder="Barrio o localidad, por tu dseguridad NO pongas dirreccion exacta!" name="address" value={ address } onChange = { onInputChange } />
+                    <label className="form-label" htmlFor="form6Example3">Localidad</label>
                 </div>
 
                 <div>
@@ -143,13 +140,13 @@ export const EditPetsPage = () => {
                         <input type="file" onChange={handleOnChange} />
                     </div>
                     <div>
-                        <label className="form-label" htmlFor="form6Example3">Foto de Perfil</label>
+                        <label className="form-label" htmlFor="form6Example3">Reemplazar foto de perfil</label>
                     </div>
                 </div>
                 &nbsp;
 
                 <div className="form-outline mb-4">
-                    <textarea className="form-control" id="form6Example7" rows="4" placeholder="notes" name="notes" value={ notes } onChange = { onInputChange }></textarea>
+                    <textarea className="form-control" id="form6Example7" rows="4" placeholder="Agregue detalles que le gustaria contar sobre esta mascota(Opcional)" name="notes" value={ notes } onChange = { onInputChange }></textarea>
                     <label className="form-label" htmlFor="form6Example7">Informacion adicional</label>
                 </div>
 

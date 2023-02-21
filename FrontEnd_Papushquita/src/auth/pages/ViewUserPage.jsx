@@ -36,7 +36,7 @@ export const ViewUserPage = () => {
                 <article className="card animated fadeInLeft" >
                   <div className="card-block">
                     <h4 className="card-title">Datos del Usuario</h4>
-                    <h6 className="text-muted">Nombre:          { userMod?.name }</h6>
+                    <h6 className="text-muted">Nombre de Usuario:          { userMod?.name }</h6>
                     <h6 className="text-muted">Email:           { userMod?.email }</h6>
                     <h6 className="text-muted">Nombre Completo:  { userMod?.fullName }</h6>
                     <h6 className="text-muted">Telefono: { userMod?.contactPhone }</h6>

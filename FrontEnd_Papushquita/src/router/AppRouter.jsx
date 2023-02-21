@@ -3,7 +3,7 @@ import { Routes, Route} from "react-router-dom";
 import { PapushquitaPage } from "../papushquita";
 import { LoginPage, UserVerifyPage, EditUserPage, ViewUserPage } from '../auth/';
 import { MyPetsPage,  EditPetsPage, AddPetsPage } from '../pets/'
-import { SolicitudesPage } from '../solicitude/'
+import { SentSolicitudesPage, SolicitudesPage } from '../solicitude/'
 
 
 export const AppRouter = () => {
@@ -22,6 +22,7 @@ export const AppRouter = () => {
             <Route path="/auth/viewUser/*" element={ <ViewUserPage /> } />
             <Route path="/auth/editUser/*" element={ <EditUserPage /> } />
             <Route path="/solicitude/*" element={ <SolicitudesPage /> } />
+            <Route path="/solicitude/sent/*" element={ <SentSolicitudesPage /> } />
             <Route path="/*" element={ <PapushquitaPage /> } />
 
        

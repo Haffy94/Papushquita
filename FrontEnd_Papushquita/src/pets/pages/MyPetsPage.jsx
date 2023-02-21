@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom'
-import { EditPetsPage } from './EditPetPage';
-import { usePetStore } from '../../hooks';
+import { useNavigate } from 'react-router-dom';
+import { usePetStore, useSolicitudeStore } from '../../hooks';
 
 
 
@@ -11,6 +10,7 @@ export const MyPetsPage = () => {
 
   const { viewMyPets, deletePet } = usePetStore();
   const pets = viewMyPets();
+  const { modifyOtherSolicitude } = useSolicitudeStore();
 
   const [first, setfirst] = useState([])
 
@@ -27,7 +27,7 @@ export const MyPetsPage = () => {
       <div className="container m-t-md">
         <div className="row" >
           { first.map((pet, index ) => 
-                <div className="col-xs-12 col-md-4" key={index}>
+                <div className="col-xs-12 col-md-3" key={index}>
                   {/* <!-- Card --> */}
                   <article className="card animated fadeInLeft" id={ `articulo-${index}`} >
                     {/* <img className="card-img-top img-responsive" src="https://snap-photos.s3.amazonaws.com/img-thumbs/960w/1U2EGZ07GU.jpg" alt="Deer in nature" /> */}
@@ -44,7 +44,6 @@ export const MyPetsPage = () => {
                                     navigate("/pets/editPets", {
                                       state: pet
                                     } )
-                                    //EditPetsPage(pet)
                                   }
                                 } 
                         className="btn btn-primary"  
@@ -56,6 +55,7 @@ export const MyPetsPage = () => {
                                   { 
                                     let element = document.getElementById(`articulo-${index}`);
                                     element.remove();
+                                    modifyOtherSolicitude(pet?.id, '')
                                     deletePet(pet?.id); 
                                   }
                                 } 

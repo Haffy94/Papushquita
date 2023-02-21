@@ -15,7 +15,7 @@ const crearUsuario = async(req, res = express.response) => {
         if ( usuario ) {
             return res.status(400).json({
                 ok:false,
-                msg: 'el usuario ya existe con este correo'
+                msg: 'Ya existe un usuario con este correo'
             })
         }
 
@@ -58,7 +58,7 @@ const loginUsuario = async(req, res = express.response) => {
         if ( !usuario ) {
             return res.status(400).json({
                 ok:false,
-                msg: 'el usuario no existe con este correo'
+                msg: 'Email inválido'
             });
         }
 
@@ -68,7 +68,7 @@ const loginUsuario = async(req, res = express.response) => {
         if( !validPassword ){
             return res.status(400).json({
                 ok: false,
-                msg: 'Password Incorrecto'
+                msg: 'Password incorrecto'
             });
         }
 
@@ -121,6 +121,7 @@ const showUser = async(req, res = express.response) => {
 }
 
 
+
 const validarUsuario = async(req, res = express.response) => {
     
     const userId = req.uid
@@ -133,7 +134,7 @@ const validarUsuario = async(req, res = express.response) => {
         if( !usuario ){
             return res.status(404).json({
                 ok: false,
-                msg: 'no Existe usuario con este ID'
+                msg: 'No existe un usuario con este ID'
             });
         }
 
@@ -244,7 +245,7 @@ const editarUsuario = async(req, res = express.response) => {
         if( !usuario ){
             return res.status(404).json({
                 ok: false,
-                msg: 'no Existe usuario con este ID'
+                msg: 'No existe un usuario con este ID'
             });
         }
 

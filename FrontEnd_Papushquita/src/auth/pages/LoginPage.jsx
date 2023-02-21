@@ -37,27 +37,27 @@ export const LoginPage = () => {
         event.preventDefault();
         
         if( registerName == '' ){
-            Swal.fire('Error en registro', 'El Nombre de Usuario es obligatorio', 'error');
+            Swal.fire('Error en registro', 'El nombre de usuario es obligatorio', 'error');
             return;
         }
         if( !(/([a-zA-Z0-9]{6,})/.test(registerName)) ){
-            Swal.fire('Error en registro', 'El Nombre de Usuario debe tener al menos 6 caracteres', 'error');
+            Swal.fire('Error en registro', 'El nombre de usuario debe tener al menos 6 caracteres', 'error');
             return;
         }
         if( registerEmail == '' ){
-            Swal.fire('Error en registro', 'El mail es obligatorio', 'error');
+            Swal.fire('Error en registro', 'El email es obligatorio', 'error');
             return;
         }
         if( !(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(registerEmail)) ){
-            Swal.fire('Error en registro', 'Formato de email invalido', 'error');
+            Swal.fire('Error en registro', 'Formato de email inválido', 'error');
             return;
         }
         if( registerPassword == '' ){
-            Swal.fire('Error en registro', 'Contraseña no debe estar vacia', 'error');
+            Swal.fire('Error en registro', 'La contraseña no debe estar vacía', 'error');
             return;
         }
         if( !(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{6,}$/.test(registerPassword)) ){
-            Swal.fire('Error en registro', 'Contraseña debe tener al menos una Mayuscula, una minuscula, un numero y ser mayor a 6 digitos', 'error');
+            Swal.fire('Error en registro', 'La contraseña debe tener al menos una mayúscula, una minúscula, un número y ser mayor a 6 dígitos', 'error');
             return;
         }
         if ( registerPassword !== registerPassword2 ){
@@ -65,7 +65,7 @@ export const LoginPage = () => {
             return;
         }
         startRegister({ name: registerName, email: registerEmail, password: registerPassword });
-        Swal.fire('Usuario creado Exitosamente!', 'Por favor ingrese su mail y su contraseña', 'success')
+        Swal.fire('Usuario creado exitosamente!', 'Por favor ingrese su email y su contraseña', 'success')
             .then((result) => {
                 location.reload();
               });
@@ -75,8 +75,7 @@ export const LoginPage = () => {
 
     useEffect(() => {
       if ( errorMessage !== undefined ) {
-        console.log(errorMessage)
-        //Swal.fire('Error de autenticacion!!', errorMessage, 'error');
+        Swal.fire('Error de autenticación', errorMessage, 'error');
       }
     
 
@@ -131,7 +130,7 @@ export const LoginPage = () => {
                             <input
                                 type="text"
                                 className="form-control"
-                                placeholder="Nombre"
+                                placeholder="Nombre de Usuario"
                                 name="registerName"
                                 value={ registerName }
                                 onChange={ onRegisterInputChange }
