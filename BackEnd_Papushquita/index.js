@@ -27,7 +27,7 @@ app.use(express.json());
 //Rutas
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/pets', require('./routes/pets'));
-app.use('/api/solicitude', require('./routes/solicitude'));
+app.use('/api/solicitude', require('./routes/solicitude')); 
 
 
 
