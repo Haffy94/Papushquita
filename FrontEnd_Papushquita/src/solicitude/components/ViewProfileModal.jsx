@@ -31,7 +31,6 @@ export const ViewProfileModal = ({modalIsOpen, setIsOpen, selectedSolicitude}) =
 
     const { viewUser, sendSolicitude, modifySolicitude } = useSolicitudeStore();
     const [user, setuser] = useState([])
-    console.log(selectedSolicitude)
     
     useEffect(() => {
         if(selectedSolicitude !== null){

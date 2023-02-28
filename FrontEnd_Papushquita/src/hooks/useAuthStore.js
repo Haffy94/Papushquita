@@ -90,7 +90,6 @@ export const useAuthStore = () => {
      const verifyUserStatus = async() => {
         try {
             const resp = await papushquitaApi.get('/auth/verifyStatus') 
-            console.log(resp.data.status)
             if (resp.data.status){ return true };
             return false;
             
@@ -103,7 +102,6 @@ export const useAuthStore = () => {
     const startChangePassword = async(user) => {
         try {
             const resp = await papushquitaApi.put('/auth/passwordChange', {data:user}) 
-            console.log(resp.data.status)
             if (resp.data.status){ return true };
             return false;
             

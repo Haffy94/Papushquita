@@ -67,8 +67,6 @@ export const usePetStore = () => {
 
     const addPetImage = async(req) => {
         try {
-            console.log("ACAAAA LA CTM")
-            console.log(req)
 
             const formData = new FormData();
             formData.append("image", req.file);
@@ -94,7 +92,6 @@ export const usePetStore = () => {
 
     const startEditPet = async(pet) => {
         try {
-            console.log(pet.id)
             const resp = await papushquitaApi.put(`/pets/${pet.id}`, {data:pet}) 
             return resp
             

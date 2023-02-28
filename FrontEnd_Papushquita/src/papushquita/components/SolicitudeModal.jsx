@@ -53,7 +53,6 @@ export const SolicitudeModal = ({modalIsOpen, setIsOpen, pet}) => {
                 if( !response.data.ok ){
                     Swal.fire('Error al enviar la solicitud', response.data.msg, 'error');
                 }
-                console.log(response.data.msg)
             })
     }
 

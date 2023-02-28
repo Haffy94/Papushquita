@@ -31,6 +31,50 @@ export const UserVerifyPage = () => {
 
     const userVerifySubmit = ( event ) => {
         event.preventDefault();
+        if( fullName == '' ){
+            Swal.fire('Error en Verificacion', 'El nombre completo es obligatorio', 'error');
+            return;
+        }
+        if( contactPhone == '' ){
+            Swal.fire('Error en Verificacion', 'El telefono es obligatorio', 'error');
+            return;
+        }
+        if( documentType == '' ){
+            Swal.fire('Error en Verificacion', 'El tipo de documento es obligatorio', 'error');
+            return;
+        }
+        if( documentId == '' ){
+            Swal.fire('Error en Verificacion', 'El documento es obligatorio', 'error');
+            return;
+        }
+        if( address == '' ){
+            Swal.fire('Error en Verificacion', 'La localidad es obligatoria', 'error');
+            return;
+        }
+        if( houseType == '' ){
+            Swal.fire('Error en Verificacion', 'El tipo de hogar es obligatorio', 'error');
+            return;
+        }
+        if( houseType2 == '' ){
+            Swal.fire('Error en Verificacion', 'El tipo es obligatorio', 'error');
+            return;
+        }
+        if( familymembers == '' ){
+            Swal.fire('Error en Verificacion', 'La cantidad de miembros de la familia es obligatoria', 'error');
+            return;
+        }
+        if( experienceWhitOtherPets == '' ){
+            Swal.fire('Error en Verificacion', 'La experiencia con otro animales es obligatoria', 'error');
+            return;
+        }
+        if( otherAnimalsCastration == '' ){
+            Swal.fire('Error en Verificacion', 'El estado de sus otras mascotas es obligatorio', 'error');
+            return;
+        }
+        if( windowsProtect == '' ){
+            Swal.fire('Error en Verificacion', 'Por favor indique si posee o no proteccion de ventana', 'error');
+            return;
+        }
         startVerifyUser({
             fullName: fullName, 
             contactPhone: contactPhone, 
@@ -80,6 +124,7 @@ export const UserVerifyPage = () => {
                     <div className="col">
                         <div className="form-outline">
                             <select className="form-select" name="documentType" value={ documentType } onChange={ onInputChange }>
+                                <option defaultValue="">Seleccione una opción</option>
                                 <option value="DNI">DNI</option>
                                 <option value="Cédula de identidad">Cédula de identidad</option>
                             </select>
@@ -103,6 +148,7 @@ export const UserVerifyPage = () => {
                     <div className="col">
                         <div className="form-outline">
                             <select className="form-select" name="houseType" value={ houseType } onChange={ onInputChange } >
+                                <option defaultValue="">Seleccione una opción</option>
                                 <option value="Casa">Casa</option>
                                 <option value="Departamento">Departamento</option>
                             </select>
@@ -112,6 +158,7 @@ export const UserVerifyPage = () => {
                     <div className="col">
                         <div className="form-outline">
                             <select className="form-select" name="houseType2" value={ houseType2 } onChange={ onInputChange }>
+                                <option defaultValue="">Seleccione una opción</option>
                                 <option value="Inquilino">Inquilino</option>
                                 <option value="Propietario">Propietario</option>
                             </select>
@@ -131,6 +178,7 @@ export const UserVerifyPage = () => {
                     <div className="col">
                         <div className="form-outline">
                             <select className="form-select" name="experienceWhitOtherPets" value={ experienceWhitOtherPets } onChange = { onInputChange } >
+                                <option defaultValue="">Seleccione una opción</option>
                                 <option value="Si">Si</option>
                                 <option value="No">No</option>
                             </select>
@@ -140,6 +188,7 @@ export const UserVerifyPage = () => {
                     <div className="col">
                         <div className="form-outline">
                             <select className="form-select" name="otherAnimalsCastration" value={ otherAnimalsCastration } onChange = { onInputChange }>
+                                <option defaultValue="">Seleccione una opción</option>
                                 <option value="Si, todas están castradas">Si, todas están castradas</option>
                                 <option value="Algunas si otras no">Algunas si otras no</option>
                                 <option value="No castre aun, pero lo voy a hacer">No castre aun, pero lo voy a hacer</option>
@@ -152,6 +201,7 @@ export const UserVerifyPage = () => {
                     <div className="col">
                         <div className="form-outline">
                             <select className="form-select" name="windowsProtect" value={ windowsProtect } onChange = { onInputChange } >
+                                <option defaultValue="">Seleccione una opción</option>
                                 <option value="Si">Si</option>
                                 <option value="No">No</option>
                             </select>

@@ -11,7 +11,6 @@ const generarSolicitud = async(req, res = express.response) => {
     try {
 
         const solicitudRepetida = await Solicitud.findOne({user: req.uid, pet: req.body.data.id } );
-        console.log(solicitudRepetida)
 
         if ( solicitudRepetida !== null ){
             return res.json({
@@ -36,7 +35,6 @@ const generarSolicitud = async(req, res = express.response) => {
 
         const mascota = await Mascota.findById(solicitud.pet);
 
-        console.log(mascota.inAdoption)
 
         if(!mascota.inAdoption){
             return res.json({

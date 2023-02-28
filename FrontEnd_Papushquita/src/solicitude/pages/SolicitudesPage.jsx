@@ -51,7 +51,6 @@ export const SolicitudesPage = () => {
                           onClick={ () => 
                                     { 
                                       setSelectedSolicitude(solicitud)
-                                      console.log(selectedSolicitude)
                                       setIsOpen(true)
                                     }
                                   } 

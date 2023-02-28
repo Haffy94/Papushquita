@@ -125,8 +125,6 @@ const showUser = async(req, res = express.response) => {
 const validarUsuario = async(req, res = express.response) => {
     
     const userId = req.uid
-    console.log(req.body.data)
-
     try {
 
         const usuario = await Usuario.findById(userId);
@@ -169,12 +167,12 @@ const cambiarContraseña = async(req, res = express.response) => {
         const usuario = await Usuario.findById(userId);
         const validPassword = bcrypt.compareSync( req.body.data.password, usuario.password )
 
-        console.log(req.body.data.password)
+
         if( !validPassword ){
             const salt = bcrypt.genSaltSync();
             req.body.data.password = bcrypt.hashSync(req.body.data.password, salt);
         }
-        console.log(req.body.data.password)
+
 
         const cambioContraseña= {
             ...req.body.data

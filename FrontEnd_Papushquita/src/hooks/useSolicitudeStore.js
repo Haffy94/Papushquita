@@ -26,7 +26,6 @@ export const useSolicitudeStore = () => {
 }
 
   const sendSolicitude = async(data) => {
-    console.log(data)
       try {
         const resp = await papushquitaApi.post('solicitude/new', {data})
         return resp
@@ -38,9 +37,7 @@ export const useSolicitudeStore = () => {
 
   const viewUser = async(solicitude) => {
       try {
-        console.log(solicitude)
         const resp = await papushquitaApi.post('solicitude/view', solicitude)
-        console.log(resp)
         return resp
         
       } catch (error) {
@@ -61,7 +58,6 @@ export const useSolicitudeStore = () => {
   const modifySolicitude = async(solicitudeId, status) => {
     try {
       const resp = await papushquitaApi.put(`solicitude/modify/${solicitudeId}`, {status})
-      console.log(resp)
       return resp
       
     } catch (error) {
@@ -72,7 +68,6 @@ export const useSolicitudeStore = () => {
   const modifyOtherSolicitude = async(petId, solicitudId) => {
     try {
       const resp = await papushquitaApi.put(`solicitude/modify/other/${petId}`, {solicitudId})
-      console.log(resp)
       return resp
       
     } catch (error) {

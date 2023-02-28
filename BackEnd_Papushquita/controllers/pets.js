@@ -15,7 +15,7 @@ const getMisMascotas = async(req, res = express.response) => {
 
     const userId = req.uid;  
     const mascota = await Mascota.find({ user: userId, inAdoption: true });
-    console.log(mascota)
+
 
     res.json({
         ok : true,
@@ -165,7 +165,7 @@ const adoptarMascota = async(req, res = express.response) => {
         }
 
         const mascotaAdoptada = await Mascota.findByIdAndUpdate( mascotaId, adopcionMascota, {new: true} );
-        console.log(mascotaAdoptada)
+
 
         res.json({
             ok : true,
